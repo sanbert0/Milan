@@ -29,7 +29,7 @@
   .pulse-ring{position:absolute;border-radius:50px;border:3px solid var(--morado-claro);animation:pulseRing 2s ease-out infinite;pointer-events:none;}
   @keyframes pulseRing{0%{inset:0;opacity:.8;}100%{inset:-20px;opacity:0;}}
   @keyframes floatBig{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-18px) rotate(5deg);}}
-  @keyframes Rotating{0%,100%{transform: rotate(-5deg);}50%{transform: rotate(5deg);}}
+
   /* ===== SKELETON SINGERS — al frente, animacion de canto ===== */
   /* animación base de canto: balanceo lateral */
   @keyframes singL{
@@ -77,23 +77,23 @@
   /* Slide 3 skeleton singers — volteo horizontal al ritmo */
   .side-img{position:absolute;pointer-events:none;z-index:20;}
   @keyframes flipDanceL{
-    0%,100%{transform:scaleX(1) rotate(0deg) ;}
-    20%{transform:scaleX(1) rotate(20deg) translateX(20px);}
-    40%{transform:scaleX(1) rotate(-20deg) translateX(20px);}
-    50%{transform:scaleX(-1);}
-    70%{transform:scaleX(-1) rotate(20deg) translateX(20px);}
-    90%{transform:scaleX(-1) rotate(-20deg) translateX(20px);}
+    0%,100%{transform:scaleX(1) rotate(-4deg);}
+    25%{transform:scaleX(1) rotate(0deg);}
+    49%{transform:scaleX(1) rotate(4deg);}
+    50%{transform:scaleX(-1) rotate(-4deg);}
+    75%{transform:scaleX(-1) rotate(0deg);}
+    99%{transform:scaleX(-1) rotate(4deg);}
   }
   @keyframes flipDanceR{
-    0%,100%{transform:scaleX(-1) rotate(0deg) ;}
-    20%{transform:scaleX(-1) rotate(20deg) translateX(20px);}
-    40%{transform:scaleX(-1) rotate(-20deg) translateX(20px);}
-    50%{transform:scaleX(1);}
-    70%{transform:scaleX(1) rotate(20deg) translateX(20px);}
-    90%{transform:scaleX(1) rotate(-20deg) translateX(20px);}
+    0%,100%{transform:scaleX(-1) rotate(4deg);}
+    25%{transform:scaleX(-1) rotate(0deg);}
+    49%{transform:scaleX(-1) rotate(-4deg);}
+    50%{transform:scaleX(1) rotate(4deg);}
+    75%{transform:scaleX(1) rotate(0deg);}
+    99%{transform:scaleX(1) rotate(-4deg);}
   }
-  .side-img.L{left:0;animation:flipDanceL 2.4s ease-in-out infinite;transform-origin:center center;}
-  .side-img.R{right:0;animation:flipDanceR 2.4s ease-in-out infinite;transform-origin:center center;}
+  .side-img.L{left:0;animation:flipDanceL 1.8s ease-in-out infinite;transform-origin:center center;}
+  .side-img.R{right:0;animation:flipDanceR 2s ease-in-out infinite;transform-origin:center center;}
 
   /* floating bg skulls */
   .bg-skulls{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
@@ -150,10 +150,6 @@
 
   /* ===== SLIDE 3 ===== */
   #slide3{background:radial-gradient(ellipse at 70% 20%,#200a40 0%,#0a0a0f 60%);justify-content:flex-start;padding-top:20px;overflow-y:auto;}
-
-  /* ── Skull pile border (image-based) ── */
-  .skull-pile-img{position:absolute;pointer-events:none;z-index:1;}
-  @keyframes skullPop{0%,100%{transform-origin:bottom center;transform:scale(1) rotate(var(--r,0deg));}50%{transform-origin:bottom center;transform:scale(1.06) rotate(calc(var(--r,0deg) + 3deg));}}
   .sk3row{display:flex;gap:4px;margin-bottom:10px;animation:fadeInUp .5s ease both;position:relative;z-index:2;}
   .sk3{font-size:clamp(18px,5vw,26px);animation:wiggle 1.7s ease-in-out infinite;}
   .sk3:nth-child(1){animation-delay:0s;}.sk3:nth-child(2){animation-delay:.2s;}.sk3:nth-child(3){animation-delay:.4s;}.sk3:nth-child(4){animation-delay:.6s;}.sk3:nth-child(5){animation-delay:.8s;}.sk3:nth-child(6){animation-delay:1s;}
@@ -342,20 +338,9 @@
 
     <!-- SLIDE 3 -->
     <div class="slide" id="slide3">
-
-      <!-- ══ SKULL IMAGE PILE BORDER — generado por JS ══ -->
-      <!--div id="s3-skull-pile" style="position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;"></div>
-
-      <!-- lluvia de huesos (bone-rain) -->
-      <div class="bone-rain" style="left:10%;font-size:15px;animation-duration:5s;animation-delay:0s;">🦴</div>
-      <div class="bone-rain" style="left:30%;font-size:13px;animation-duration:4s;animation-delay:1.5s;">💀</div>
-      <div class="bone-rain" style="left:55%;font-size:15px;animation-duration:6s;animation-delay:.8s;">🦴</div>
-      <div class="bone-rain" style="left:75%;font-size:13px;animation-duration:4.5s;animation-delay:2.5s;">💀</div>
-      <div class="bone-rain" style="left:90%;font-size:14px;animation-duration:5.5s;animation-delay:3.5s;">🦴</div>
-
       <!-- Skeleton singers laterales al frente -->
-      <img class="side-img L" src="images/SkelMic.png"   style="top:60%;width:clamp(120px,12vw,72px);animation-delay:.9s;" alt="">
-      <img class="side-img R" src="images/SkelGuit.png" style="top:60%;width:clamp(120px,12vw,72px);animation-delay:.9s;" alt="">
+      <img class="side-img L" src="images/SkelMic.png"   style="top:32%;width:clamp(52px,12vw,72px);" alt="">
+      <img class="side-img R" src="images/SkelHands.png" style="top:32%;width:clamp(52px,12vw,72px);animation-delay:.9s;" alt="">
 
       <div class="sk3row">
         <span class="sk3">💀</span><span class="sk3">🦴</span><span class="sk3">💀</span><span class="sk3">🦴</span><span class="sk3">💀</span><span class="sk3">🦴</span>
@@ -364,9 +349,7 @@
       <div class="slide3-sub">¡Te espero en mi fiesta!</div-->
 
       <div class="festejado-card">
-        <div class="fc-name">
-          <img style="animation:Rotating 3s ease-in-out infinite; position: relative; border-radius: 50%;" src="images/Milan3.jpg" width="150" alt="">
-          <div>Jacob<br>Milan</div></div>
+        <div class="fc-name">Jacob<br>Milan</div>
         <!--div class="fc-sub">🎂 ¡El rey de la fiesta! 🎂</div-->
       </div>
 
@@ -374,7 +357,7 @@
         <div class="resumen-card"><div class="rc-icon">📅</div><div class="rc-label">Fecha</div><div class="rc-val">25 Abr 2026</div></div>
         <div class="resumen-card"><div class="rc-icon">⏰</div><div class="rc-label">Hora</div><div class="rc-val">3:00 PM</div></div>
         <div class="resumen-card"><div class="rc-icon">📍</div><div class="rc-label">Lugar</div><div class="rc-val">C. 5 de Mayo #155</div></div>
-        <div class="resumen-card"><div class="rc-icon">🦴</div><div class="rc-label">Temática</div><div class="rc-val">Calaveras</div></div>
+        <div class="resumen-card"><div class="rc-icon">🦴</div><div class="rc-label">Temática</div><div class="rc-val">Esqueletos 💀</div></div>
       </div>
 
       <!-- CONTADOR DE ASISTENTES -->
@@ -786,91 +769,6 @@ function closeCommentsView() {
 document.getElementById('comments-view-modal').addEventListener('click', function(e) {
   if (e.target === this) closeCommentsView();
 });
-
-/* ════════════════════════════════
-   SKULL IMAGE PILE BORDER — slide 3
-   Uses images/Skull1.png, Skull2.png, Skull3.png
-   ════════════════════════════════ */
-(function buildSkullPile() {
-  const container = document.getElementById('s3-skull-pile');
-  if (!container) return;
-
-  const skulls = ['images/Skull1.png','images/Skull2.png','images/Skull3.png'];
-  // How to lay out each edge: { axis, fixedProp, fixedVal, spreadProp, sizePx, layers }
-  const edges = [
-    // TOP: row of skulls sitting on top edge, multiple layers overlap
-    { side:'top',    fixedProp:'top',    spreadProp:'left',  rows:2, rowDir:1  },
-    // BOTTOM: row sitting on bottom edge
-    { side:'bottom', fixedProp:'bottom', spreadProp:'left',  rows:2, rowDir:-1 },
-    // LEFT: column on left edge
-    { side:'left',   fixedProp:'left',   spreadProp:'top',   rows:2, rowDir:1  },
-    // RIGHT: column on right edge
-    { side:'right',  fixedProp:'right',  spreadProp:'top',   rows:2, rowDir:1  },
-  ];
-
-  requestAnimationFrame(() => {
-    const slide = document.getElementById('slide3');
-    const W = slide.offsetWidth  || 320;
-    const H = slide.offsetHeight || window.innerHeight;
-
-    edges.forEach(({ side, fixedProp, spreadProp, rows, rowDir }) => {
-      const isHoriz = (side === 'top' || side === 'bottom');
-      const total   = isHoriz ? W : H;
-      const baseSize = isHoriz ? 52 : 48; // bigger skulls, more spacing
-      const count   = Math.ceil(total / (baseSize * 1.1)) + 1;
-
-      for (let layer = 0; layer < rows; layer++) {
-        for (let i = 0; i < count; i++) {
-          const img = document.createElement('img');
-          img.src = skulls[(i + layer) % skulls.length];
-          img.className = 'skull-pile-img';
-          img.alt = '';
-
-          // Size: slightly random, smaller in back layers
-          const sz = baseSize - layer * 4 + (Math.random() * 12 - 6);
-          img.style.width  = sz + 'px';
-          img.style.height = sz + 'px';
-          img.style.objectFit = 'contain';
-
-          // Opacity: back layers dimmer
-          const baseOp = 0.75 - layer * 0.15;
-          img.style.opacity = (baseOp + Math.random() * 0.2).toFixed(2);
-
-          // Rotation: random tilt
-          const rot = (Math.random() * 40 - 20) | 0;
-          img.style.transform = `rotate(${rot}deg)`;
-          img.style.setProperty('--r', rot + 'deg');
-
-          // Spread position along the edge
-          const spreadPos = i * (baseSize * 1.1) - baseSize * 0.3 + (Math.random() * 8 - 4);
-
-          // Fixed position: how deep into the slide each layer sits
-          const depth = layer * (baseSize * 0.55) + (Math.random() * 4);
-
-          if (isHoriz) {
-            img.style.left = spreadPos + 'px';
-            img.style[fixedProp] = (depth - sz * 0.4) + 'px';
-          } else {
-            img.style.top  = spreadPos + 'px';
-            img.style[fixedProp] = (depth - sz * 0.4) + 'px';
-          }
-
-          // Subtle breathing animation
-          const dur = (1.8 + Math.random() * 1.4).toFixed(1);
-          const delay = (Math.random() * 2).toFixed(1);
-          img.style.animation = `skullPop ${dur}s ease-in-out ${delay}s infinite`;
-
-          // filter: slight purple glow on some
-          if (Math.random() > 0.65) {
-            img.style.filter = 'drop-shadow(0 0 4px rgba(168,85,247,.55))';
-          }
-
-          container.appendChild(img);
-        }
-      }
-    });
-  });
-})();
 
 arrowPrev.classList.add('disabled');
 </script>
