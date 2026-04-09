@@ -231,6 +231,18 @@
   .comment-text{color:var(--hueso);font-size:.82rem;margin-top:3px;opacity:.88;line-height:1.4;}
   .no-comments-msg{color:rgba(255,255,255,.3);font-size:.82rem;text-align:center;padding:20px 0;}
 
+  /* ===== NUDGE MODAL ===== */
+  #nudge-modal{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .4s;}
+  #nudge-modal.open{opacity:1;pointer-events:all;}
+  #nudge-modal .nudge-box{background:linear-gradient(135deg,#1e0a3a,#0f0f1e);border:2px solid var(--morado-claro);border-radius:26px;padding:28px 22px 22px;width:100%;max-width:320px;text-align:center;transform:translateY(22px) scale(.95);transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 40px rgba(168,85,247,.45),0 20px 60px rgba(0,0,0,.7);}
+  #nudge-modal.open .nudge-box{transform:translateY(0) scale(1);}
+  .nudge-skulls{font-size:32px;letter-spacing:6px;margin-bottom:10px;animation:bounce 1.2s ease-in-out infinite;}
+  .nudge-title{font-family:'Creepster',cursive;color:var(--naranja);font-size:clamp(1.5rem,6vw,2rem);text-shadow:0 0 18px rgba(249,115,22,.6);margin-bottom:8px;line-height:1.1;}
+  .nudge-msg{color:var(--hueso);font-size:clamp(.8rem,3.2vw,.95rem);opacity:.78;line-height:1.5;margin-bottom:20px;}
+  .nudge-btn{background:linear-gradient(135deg,var(--morado),var(--naranja));border:none;border-radius:50px;padding:13px 36px;color:white;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;box-shadow:0 0 24px rgba(168,85,247,.5);transition:transform .15s;position:relative;}
+  .nudge-btn:active{transform:scale(.95);}
+  .nudge-pulse{position:absolute;border-radius:50px;border:2px solid var(--morado-claro);animation:pulseRing 2s ease-out infinite;pointer-events:none;}
+
   /* ===== MODALES ===== */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.87);backdrop-filter:blur(8px);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s;}
   .modal-overlay.open{opacity:1;pointer-events:all;}
@@ -476,6 +488,19 @@
   </div>
 </div>
 
+<!-- MODAL: Nudge deslizar -->
+<div id="nudge-modal">
+  <div class="nudge-box">
+    <div class="nudge-skulls">💀🦴💀</div>
+    <div class="nudge-title">¡Sigue explorando!</div>
+    <p class="nudge-msg">Desliza para ver los detalles de la fiesta… ¡no te quedes solo en el primer slide! 🎃</p>
+    <button class="nudge-btn" onclick="closeNudge(); nextSlide();">
+      <span class="nudge-pulse"></span>
+      Ver la invitación ›
+    </button>
+  </div>
+</div>
+
 <!-- ════════════════════════════════════════════
      FIREBASE — importa y conecta
      ════════════════════════════════════════════ -->
@@ -644,13 +669,6 @@ const arrowPrev      = document.getElementById('arrow-prev');
 const arrowNext      = document.getElementById('arrow-next');
 const slidesContainer= document.getElementById('slides-container');
 
-function goTo(n) {
-  current = n;
-  track.style.transform = `translateX(-${n * 33.333}%)`;
-  dots.forEach((d,i) => d.classList.toggle('active', i === n));
-  arrowPrev.classList.toggle('disabled', n === 0);
-  arrowNext.classList.toggle('disabled', n === 2);
-}
 function nextSlide() { if (current < 2) goTo(current + 1); }
 function prevSlide() { if (current > 0) goTo(current - 1); }
 
@@ -672,8 +690,38 @@ document.getElementById('btn-play').addEventListener('click', () => {
     arrowNext.classList.add('visible');
     goTo(0);
     startMusic();
+    startNudgeTimer();
   }, 800);
 });
+
+/* ── Nudge: si no desliza en 20 s muestra el modal ── */
+let nudgeTimer = null;
+function startNudgeTimer() {
+  clearNudgeTimer();
+  nudgeTimer = setTimeout(() => {
+    if (current === 0) openNudge();
+  }, 20000);
+}
+function clearNudgeTimer() {
+  if (nudgeTimer) { clearTimeout(nudgeTimer); nudgeTimer = null; }
+}
+function openNudge() {
+  document.getElementById('nudge-modal').classList.add('open');
+}
+function closeNudge() {
+  document.getElementById('nudge-modal').classList.remove('open');
+  clearNudgeTimer();
+}
+// Cancelar el nudge si el usuario navega
+function goTo(n) {
+  clearNudgeTimer();
+  closeNudge();
+  current = n;
+  track.style.transform = `translateX(-${n * 33.333}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i === n));
+  arrowPrev.classList.toggle('disabled', n === 0);
+  arrowNext.classList.toggle('disabled', n === 2);
+}
 
 /* ── Música ── */
 const audio = document.getElementById('bg-audio');
