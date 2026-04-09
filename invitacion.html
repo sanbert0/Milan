@@ -14,6 +14,11 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{width:100%;height:100%;overflow:hidden;background:var(--negro);font-family:'Nunito',sans-serif;}
 
+  @media (min-width: 1024px) {
+    .slid3-bg {
+      display: none !important;
+    }
+  }
   /* ===== INTRO ===== */
   #intro{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#1e0540 0%,#0a0a0f 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;transition:opacity .8s ease,transform .8s ease;overflow:hidden;}
   #intro.hide{opacity:0;transform:scale(1.05);pointer-events:none;}
@@ -23,7 +28,7 @@
   @keyframes iskBounce{0%,100%{transform:translateY(0) rotate(-5deg) scale(1);}50%{transform:translateY(-13px) rotate(5deg) scale(1.15);}}
   .intro-title{font-family:'Creepster',cursive;color:var(--hueso);font-size:clamp(2rem,8vw,3.5rem);text-align:center;margin-top:14px;text-shadow:0 0 20px var(--morado-claro),0 0 40px var(--morado);line-height:1.1;padding:0 20px;position:relative;z-index:2;}
   .intro-sub{color:var(--naranja-claro);font-size:clamp(.82rem,3.5vw,1.05rem);margin-top:8px;font-weight:900;letter-spacing:2px;position:relative;z-index:2;}
-  #btn-play{margin-top:34px;position:relative;background:linear-gradient(135deg,var(--morado),var(--naranja));border:none;border-radius:50px;padding:17px 46px;font-family:'Fredoka One',cursive;font-size:clamp(1.1rem,4.5vw,1.5rem);color:white;cursor:pointer;box-shadow:0 0 30px rgba(168,85,247,.6),0 8px 20px rgba(0,0,0,.5);transition:transform .15s;display:flex;align-items:center;gap:12px;z-index:2;}
+  #btn-play{margin-top:17px; margin-bottom: 17px; margin-left: 5px; margin-right: 5px;position:relative;background:linear-gradient(135deg,var(--morado),var(--naranja));border:none;border-radius:50px;padding:17px 46px;font-family:'Fredoka One',cursive;font-size:clamp(1.1rem,4.5vw,1.5rem);color:white;cursor:pointer;box-shadow:0 0 30px rgba(168,85,247,.6),0 8px 20px rgba(0,0,0,.5);transition:transform .15s;display:flex;align-items:center;gap:12px;z-index:2;}
   #btn-play:active{transform:scale(.95);}
   .play-icon{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid white;display:inline-block;}
   .pulse-ring{position:absolute;border-radius:50px;border:3px solid var(--morado-claro);animation:pulseRing 2s ease-out infinite;pointer-events:none;}
@@ -175,9 +180,17 @@
   .resumen-card:nth-child(1){animation-delay:.2s;}.resumen-card:nth-child(2){animation-delay:.28s;}.resumen-card:nth-child(3){animation-delay:.36s;}.resumen-card:nth-child(4){animation-delay:.44s;}
   .rc-icon{font-size:24px;margin-bottom:3px;animation:popIcon 2s ease-in-out infinite;}
   .resumen-card:nth-child(2) .rc-icon{animation-delay:.5s;}.resumen-card:nth-child(3) .rc-icon{animation-delay:1s;}.resumen-card:nth-child(4) .rc-icon{animation-delay:1.5s;}
+  .location::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .06) 50%, transparent 100%);
+    animation: shimmer 2.5s ease-in-out infinite;
+}
   .rc-label{color:var(--morado-claro);font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:900;}
   .rc-val{color:var(--hueso);font-size:clamp(.7rem,2.7vw,.85rem);font-weight:700;margin-top:3px;line-height:1.3;}
 
+  
   /* ASISTENTES */
   .asistentes-card{background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(251,191,36,.12));border:2px solid var(--verde);border-radius:18px;padding:14px 18px;width:100%;max-width:330px;margin-bottom:12px;text-align:center;animation:fadeInUp .5s ease .35s both;box-shadow:0 0 20px rgba(34,197,94,.2);position:relative;z-index:2;}
   .asistentes-title{color:var(--verde);font-family:'Fredoka One',cursive;font-size:.85rem;letter-spacing:1px;margin-bottom:6px;}
@@ -376,7 +389,8 @@
       <div class="resumen-grid">
         <div class="resumen-card"><div class="rc-icon">📅</div><div class="rc-label">Fecha</div><div class="rc-val">25 Abr 2026</div></div>
         <div class="resumen-card"><div class="rc-icon">⏰</div><div class="rc-label">Hora</div><div class="rc-val">3:00 PM</div></div>
-        <div class="resumen-card"><div class="rc-icon">📍</div><div class="rc-label">Lugar</div><div class="rc-val">C. 5 de Mayo #155</div></div>
+        <div class="resumen-card" style= "filter: drop-shadow(0 0 10px rgba(34, 197, 94, 1))" onclick="window.open('https://maps.app.goo.gl/3jQFVSYb3DfaquUL8','_blank')">
+          <div class="rc-icon">📍</div><div class="rc-label">Lugar</div><div class="rc-val">C. 5 de Mayo #155</div></div>
         <div class="resumen-card"><div class="rc-icon">🦴</div><div class="rc-label">Temática</div><div class="rc-val">Calaveras</div></div>
       </div>
 
@@ -387,7 +401,7 @@
       </div>
 
       <!-- BOTÓN CONFIRMAR ASISTENCIA -->
-      <button class="confirm-btn" onclick="openRsvpModal()">✅ ¡Confirmar mi asistencia!</button>
+      <button class="confirm-btn" onclick="openRsvpModal()">¡Confirmar mi asistencia!</button>
 
       <!-- BOTONES COMENTARIOS -->
       <div class="comments-actions">
