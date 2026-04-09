@@ -108,7 +108,7 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:18px 14px
 
 /* ════ BOTTOM NAV ════ */
 .bnav{
-  display:none;
+  display:block;
   position:fixed;bottom:0;left:0;right:0;z-index:50;
   background:rgba(12,12,16,.96);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -260,9 +260,9 @@ td:last-child{text-align:right;}
 <header>
   <div class="h-inner">
     <div class="h-left">
-      <div class="logo"></div>
+      <div class="logo">🎉</div>
       <div>
-        <div class="h-title">Dashboard · cumpleaños Milan</div>
+        <div class="h-title">Dashboard · Jacob Milan</div>
         <div class="h-sub">Panel en tiempo real</div>
       </div>
     </div>
@@ -294,7 +294,7 @@ td:last-child{text-align:right;}
   <!-- TABS + timestamp -->
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;animation:fadeUp .4s ease .07s both;">
     <div class="tabs-d">
-      <button class="td-btn active" onclick="setTab('a')">Asistentes</button>
+      <button class="td-btn active" onclick="setTab('a')">👥 Asistentes</button>
       <button class="td-btn" onclick="setTab('c')">💬 Comentarios</button>
     </div>
     <div class="upd" id="upd"></div>
@@ -443,7 +443,7 @@ function rA(){
   const empty=`<div class="empty"><div class="ei">${q||fAc?'🔍':'🎟️'}</div>${q||fAc?'Sin resultados':'Aún no hay confirmaciones'}</div>`;
   // table
   const tb=document.getElementById('tb');
-  if(tb)tb.innerHTML=!d.length?`<tr><td colspan="4">${empty}</td></tr>`:d.map((a,i)=>`<tr style="animation-delay:${i*18}ms"><td class="hxs" style="color:var(--muted);font-size:.74rem;">${i+1}</td><td class="tn">${esc(a.name)}</td><td><span class="ta">+${a.acomp}</span></td><td><span class="tt">${a.total} 🎟️</span></td></tr>`).join('');
+  if(tb)tb.innerHTML=!d.length?`<tr><td colspan="4">${empty}</td></tr>`:d.map((a,i)=>`<tr style="animation-delay:${i*18}ms"><td class="hxs" style="color:var(--muted);font-size:.74rem;">${i+1}</td><td class="tn">${esc(a.name)}</td><td><span class="ta">+${a.acomp} 👥</span></td><td><span class="tt">${a.total} 🎟️</span></td></tr>`).join('');
   // cards
   const ca=document.getElementById('ca');
   if(ca)ca.innerHTML=!d.length?empty:d.map((a,i)=>`<div class="ac" style="animation-delay:${i*16}ms"><div class="ac-n">${i+1}</div><div class="ac-i"><div class="ac-nm">${esc(a.name)}</div><div class="ac-sb">Total: ${a.total} persona${a.total!==1?'s':''}</div></div><span class="ta">+${a.acomp}</span></div>`).join('');
